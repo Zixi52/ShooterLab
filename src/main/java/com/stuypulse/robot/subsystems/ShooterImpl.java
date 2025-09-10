@@ -2,7 +2,8 @@ package com.stuypulse.robot.subsystems;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import com.revrobotics.CANSparkMax;
+import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
 import com.stuypulse.robot.constants.Ports;
 
@@ -15,22 +16,23 @@ import com.stuypulse.robot.constants.Ports;
  * @author Richie Xue 
  */
 public class ShooterImpl extends Shooter {
-    //TODO: Make 2 fields: motor (CANSparkMax) & encoder (RelativeEncoder)
+    private SparkMax motor;
+    //TODO: Make 1 field: encoder (RelativeEncoder)
 
     //The constructor has been written for you, but you need to fill in the fields
     public ShooterImpl() {
         super();
 
         /*TODO: Initialize the motor and encoder fields
-         * Hover over CANSparkMax, and RelativeEncoder to see what parameters you need to pass in
-         * CANSparkMax requires a port number and a motor type
+         * Hover over SparkMax, and RelativeEncoder to see what parameters you need to pass in
+         * SparkMax requires a port number and a motor type
          * The port number can be obtained from Ports.java in the constants folder
          * The motor type is either MotorType.kBrushless or MotorType.kBrushed (we are using Brushless)
          * 
          * RelativeEncoder's initialization requries a CANSparkMax object and then using its getEncoder() method
         */
         
-        this.motor = new CANSparkMax(, );
+        this.motor = new SparkMax( , );
         this.encoder = motor.getEncoder();
     }
 

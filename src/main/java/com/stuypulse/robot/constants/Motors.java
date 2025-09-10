@@ -8,8 +8,11 @@ package com.stuypulse.robot.constants;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMax.IdleMode;
+import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.SparkBase.PersistMode;
+import com.revrobotics.spark.SparkBase.ResetMode;
+import com.revrobotics.spark.config.SparkBaseConfig;
+import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 /*-
  * File containing all of the configurations that different motors require.
@@ -86,37 +89,36 @@ public interface Motors {
     }
 
     public static class CANSparkMaxConfig {
+        public final SparkBaseConfig sparkBaseConfig;
         public final boolean INVERTED;
         public final IdleMode IDLE_MODE;
         public final int CURRENT_LIMIT_AMPS;
         public final double OPEN_LOOP_RAMP_RATE;
 
         public CANSparkMaxConfig(
+                SparkBaseConfig sparkBaseConfig,
                 boolean inverted,
                 IdleMode idleMode,
                 int currentLimitAmps,
                 double openLoopRampRate) {
+            this.sparkBaseConfig = sparkBaseConfig;
             this.INVERTED = inverted;
             this.IDLE_MODE = idleMode;
             this.CURRENT_LIMIT_AMPS = currentLimitAmps;
             this.OPEN_LOOP_RAMP_RATE = openLoopRampRate;
         }
 
-        public CANSparkMaxConfig(boolean inverted, IdleMode idleMode, int currentLimitAmps) {
-            this(inverted, idleMode, currentLimitAmps, 0.0);
+        public CANSparkMaxConfig(SparkBaseConfig sparkBaseConfig, boolean inverted, IdleMode idleMode, int currentLimitAmps) {
+            this(sparkBaseConfig, inverted, idleMode, currentLimitAmps, 0.0);
         }
 
-        public CANSparkMaxConfig(boolean inverted, IdleMode idleMode) {
-            this(inverted, idleMode, 80);
+        public CANSparkMaxConfig(SparkBaseConfig sparkBaseConfig, boolean inverted, IdleMode idleMode) {
+            this(sparkBaseConfig, inverted, idleMode, 80);
         }
 
-        public void configure(CANSparkMax motor) {
-            motor.setInverted(INVERTED);
-            motor.setIdleMode(IDLE_MODE);
-            motor.setSmartCurrentLimit(CURRENT_LIMIT_AMPS);
-            motor.setOpenLoopRampRate(OPEN_LOOP_RAMP_RATE);
-            motor.burnFlash();
-         }
+        public void configure(SparkMax motor) {
+            motor.configure(sparkBaseConfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
+        }
           
      }
 }

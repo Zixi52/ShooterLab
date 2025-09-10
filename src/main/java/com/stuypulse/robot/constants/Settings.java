@@ -15,14 +15,14 @@ import edu.wpi.first.math.controller.SimpleMotorFeedforward;
  * File containing tunable settings for every subsystem on the robot.
  */
 public interface Settings {
-    public interface Shooter {    
+    public interface Shooter {
+        double MIN_RPM = 100.0;    
         //Notice how the constants are grouped together in a single class
         //Constant variable names should all CAPS and static
         //think about how you would use these constants in your methods
 
         /*TODO: Make the following constants: 
          * MAX_RPM of type double and set it to 5700.0
-         * MIN_RPM of type double and set it to 100.0
          * MAX_RPM_CHANGE of type double and set it to 2000.0
          * MAX_RPM_ERROR of type double and set it to 100.0
          * RING_RPM of type double and set it to 4000.0

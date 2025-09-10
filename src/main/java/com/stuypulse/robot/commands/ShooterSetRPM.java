@@ -6,10 +6,12 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 
 public class ShooterSetRPM extends InstantCommand {
 
-    //TODO: Make a field for the shooter and a field for the target RPM
+    //TODO: Make a field for the shooter
+
+    private double targetRPM;
 
     public ShooterSetRPM(double targetRPM) {
-        //TODO: Write the constructor for this command (dont forget to add requirements)
+        //TODO: Initialize the shooter and targetRPM in the constructor (dont forget to add requirements)
     }
 
     @Override

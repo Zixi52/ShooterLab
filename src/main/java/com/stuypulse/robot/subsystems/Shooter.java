@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
  * @author Richie Xue 
  */
 public abstract class Shooter extends SubsystemBase{
+    
     // Singleton (makes it so that there is only one instance of the Shooter class)
     private static final Shooter instance;
 
@@ -35,18 +36,18 @@ public abstract class Shooter extends SubsystemBase{
     }
     // Don't worry about anything above 
 
-    /*TODO: Make 3 private fields: 
-        targetRPM of tye double,
+    private double targetRPM;
+    /*TODO: Make 2 private fields like targetRPM above: 
         feedforward of type SimpleMotorFeedforward,
         feedback of type Controller
-        for the last 2, look in the imports to see what they are
     */
     
     public Shooter() {
-        /*TODO: Write your constructor, intialize the fields you made
+        /*TODO: Write your constructor, initialize the fields you made
         * Look inside the constants/Settings.java file 
         * to see what you need to initialize the feedforward and feedback
         */
+        targetRPM = 0;
     }
 
     public void setTargetRPM(double targetRPM) {
@@ -73,7 +74,7 @@ public abstract class Shooter extends SubsystemBase{
     // This is a method that will be called every 20ms
     @Override
     public void periodic() {
-        //This part I will write out for you guys! :)
+        // This part I will write out for you guys! :)
         if (getTargetRPM() < Settings.Shooter.MIN_RPM) {
             this.setVoltage(0.0);
         } 

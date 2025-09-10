@@ -17,12 +17,13 @@ import com.stuypulse.stuylib.input.gamepads.AutoGamepad;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 public class RobotContainer {
 
     // Gamepads
-    public final Gamepad driver = new AutoGamepad(Ports.Gamepad.DRIVER);
-    public final Gamepad operator = new AutoGamepad(Ports.Gamepad.OPERATOR);
+    public final CommandXboxController driver = new CommandXboxController(Ports.Gamepad.DRIVER);
+    public final CommandXboxController operator = new CommandXboxController(Ports.Gamepad.OPERATOR);
     
     // Subsystem
     //TODO: Make a field for the shooter, and set it equal to the instance of the shooter (hint: use the getInstance method)
@@ -53,20 +54,20 @@ public class RobotContainer {
 
     private void configureButtonBindings() {
         // Driver
-        /*TODO: Make a button for the driver's top button and left button
+        /*TODO: Make a button for the driver's top button and a button
             * 
             * The top button should set the shooter's target RPM to 1000
-            * The left button should run a ShooterRingShot command
+            * The a button should run a ShooterRingShot command
             * 
             * Hint: Use the ShooterSetRPM and ShooterRingShot commands
             * 
-            * Hint: Use the onTrue method for the top button and the onFalse method for the left button
+            * Hint: Use the onTrue method for the top button and the onFalse method for the a button
             * 
             * Hint: Use the shooter field you made earlier as the parameter for the ShooterSetRPM and ShooterRingShot commands
             * 
             * Use the button binding code of ShooterStop below as a guide for writing the 2 button bindings
             */
-        driver.getBottomButton()
+        driver.povDown()
             .onFalse(new ShooterStop(shooter));
 
     }
